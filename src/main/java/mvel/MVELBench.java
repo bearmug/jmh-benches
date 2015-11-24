@@ -27,7 +27,7 @@ public class MVELBench {
     public final Serializable EXPR_STRING = MVEL.compileExpression("x.replaceAll(y,z)");
     private final Map vars = new HashMap<>();
 
-    @Param({"1.00004"})
+    @Param({"1.4"})
     public Double parameter;
 
     @GenerateMicroBenchmark
