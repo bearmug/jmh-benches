@@ -9,6 +9,10 @@ buildscript {
    }
 }
 
+dependencies {
+   compile 'org.mvel:mvel2:2.2.7.Final'
+}
+
 repositories {
    jcenter()
 }
@@ -16,8 +20,7 @@ repositories {
 apply plugin: 'me.champeau.gradle.jmh'
 
 jmh {
-    include = '*/.*MVELSimpleBench.*'
+    include = 'mvel.MVELBench*'
     humanOutputFile = null
-    benchmarkMode = all
     iterations = 3
 }
