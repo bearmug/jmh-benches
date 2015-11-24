@@ -26,3 +26,8 @@ jmh {
     humanOutputFile = null
     iterations = 3
 }
+
+task bench (type: JavaExec, dependsOn: classes){
+    classpath = sourceSets.main.runtimeClasspath
+    main = "mvel.MVELBench"
+}

@@ -15,23 +15,33 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
+@Warmup(iterations = 5, time = 3, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 5, time = 3, timeUnit = TimeUnit.SECONDS)
 @Fork(1)
+@Threads(1)
 @State(Scope.Benchmark)
 
 public class MVELBench {
 
-    public final Serializable EXPR = MVEL.compileExpression("(x*x+x)");
+    public final Serializable EXPR_DOUBLE = MVEL.compileExpression("new java.math.BigDecimal(x).doubleValue()");
+    public final Serializable EXPR_STRING = MVEL.compileExpression("x.replaceAll(y,z)");
     private final Map vars = new HashMap<>();
 
     @Param({"1.00004"})
     public Double parameter;
 
     @GenerateMicroBenchmark
-    public double mvelBench() {
+    public double benchDoubleConversion() {
         vars.put("x",parameter);
-        return (double) MVEL.executeExpression(EXPR, vars);
+        return (double) MVEL.executeExpression(EXPR_DOUBLE, vars);
+    }
+
+    @GenerateMicroBenchmark
+    public String benchStringOperation() {
+        vars.put("x","qwertyuiopasdfghjklzxcvbnmasdferghugklgggd");
+        vars.put("y","g");
+        vars.put("z","O");
+        return (String) MVEL.executeExpression(EXPR_STRING, vars);
     }
 
     public static void main(String[] args) throws RunnerException {
