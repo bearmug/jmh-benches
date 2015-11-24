@@ -11,6 +11,8 @@ buildscript {
 
 dependencies {
    compile 'org.mvel:mvel2:2.2.7.Final'
+   compile 'org.openjdk.jmh:jmh-core:0.8'
+   compile 'org.openjdk.jmh:jmh-generator-annprocess:0.8'
 }
 
 repositories {
