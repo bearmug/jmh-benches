@@ -1,0 +1,23 @@
+apply plugin: 'java'
+
+buildscript {
+   repositories {
+      jcenter()
+   }
+   dependencies {
+      classpath 'me.champeau.gradle:jmh-gradle-plugin:0.2.0'
+   }
+}
+
+repositories {
+   jcenter()
+}
+
+apply plugin: 'me.champeau.gradle.jmh'
+
+jmh {
+    include = '*/.*MVELSimpleBench.*'
+    humanOutputFile = null
+    benchmarkMode = all
+    iterations = 3
+}
