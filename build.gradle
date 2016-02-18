@@ -15,5 +15,11 @@ repositories {
 
 task benchMvel(type: JavaExec, dependsOn: classes, description: 'Bench MVEL scripted execution vs. direct calls') {
     classpath = sourceSets.main.runtimeClasspath
-    main = "org.bearmug.jmh.MVELBench"
+    main = "org.bearmug.jmh.MVELBenchmark"
+}
+
+task benchBoxingUnboxing(type: JavaExec, dependsOn: classes,
+        description: 'Measures overhead from long/double boxing/unboxing') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.conversions.BoxingUnboxingBenchmark"
 }

@@ -15,13 +15,13 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
+@Warmup(iterations = 2, time = 2, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 2, time = 2, timeUnit = TimeUnit.SECONDS)
 @Fork(1)
 @Threads(1)
 @State(Scope.Benchmark)
 
-public class MVELBench {
+public class MVELBenchmark {
 
     public final Serializable EXPR_DOUBLE = MVEL.compileExpression("java.math.BigDecimal.valueOf(x).doubleValue()");
     public final Serializable EXPR_STRING = MVEL.compileExpression("x.replaceAll(y,z)");
@@ -59,7 +59,7 @@ public class MVELBench {
 
     public static void main(String[] args) throws RunnerException {
         Options res = new OptionsBuilder()
-                .include(MVELBench.class.getName() + ".*").build();
+                .include(MVELBenchmark.class.getName() + ".*").build();
 
         new Runner(res).run();
     }
