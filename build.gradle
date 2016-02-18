@@ -23,3 +23,10 @@ task benchBoxingUnboxing(type: JavaExec, dependsOn: classes,
     classpath = sourceSets.main.runtimeClasspath
     main = "org.bearmug.jmh.conversions.BoxingUnboxingBenchmark"
 }
+
+task benchFloatingPoint(type: JavaExec, dependsOn: classes,
+        description: 'Two floating point numbers arithmetics performance') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.conversions.FloatingPointBenchmark"
+}
+
