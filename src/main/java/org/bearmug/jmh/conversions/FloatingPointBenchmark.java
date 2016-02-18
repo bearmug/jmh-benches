@@ -7,6 +7,7 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
@@ -22,8 +23,12 @@ import java.util.concurrent.TimeUnit;
  * <li>
  *     <ul>- add/subtract actions not much longer with BigDecimal. It is ~2 times slower</ul>
  *     <ul>- multiplication slower with BigDecimal at least with x10 multiplicator</ul>
- *     <ul>- and numbers division slower with BigDeciamal ~2000 (two THOusAND!!!) times.
- *      Using RoundingMode parameter, divide performance penalty reduced down to 10-15 times</ul>
+ *     <ul>- and numbers division slower with BigDeciamal ~2000 (two THOusAND!!!) times, since there
+ *     is NO_ROUNDING strategy choosen under the hood</ul>
+ *     <ul>- RoundingMode != UNNECESSARY definitely save lives and decrease timing from x2000 to
+ *     x10-15</ul>
+ *     <ul>- BigDecimal.divide with MathContext usage could kick performance up to the double/double
+ *     level. Surely, precision has to be choosen carefully this case.</ul>
  * </li>
  */
 public class FloatingPointBenchmark {
@@ -87,6 +92,11 @@ public class FloatingPointBenchmark {
     @Benchmark
     public BigDecimal calcDivBigDecimalRound() {
         return bigDecimalParam1.divide(bigDecimalParam2, BigDecimal.ROUND_HALF_EVEN);
+    }
+
+    @Benchmark
+    public BigDecimal calcDivBigDecimalMathContext() {
+        return bigDecimalParam1.divide(bigDecimalParam2, MathContext.DECIMAL32);
     }
 
     public static void main(String[] args) throws RunnerException {
