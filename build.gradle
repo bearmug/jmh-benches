@@ -1,33 +1,19 @@
 apply plugin: 'java'
 
-buildscript {
-   repositories {
-      jcenter()
-   }
-   dependencies {
-      classpath 'me.champeau.gradle:jmh-gradle-plugin:0.2.0'
-   }
-}
-
 dependencies {
-   compile 'org.mvel:mvel2:2.2.7.Final'
-   compile 'org.openjdk.jmh:jmh-core:0.8'
-   compile 'org.openjdk.jmh:jmh-generator-annprocess:0.8'
+    // harness dependencies
+    compile 'org.openjdk.jmh:jmh-core:1.11.3'
+    compile 'org.openjdk.jmh:jmh-generator-annprocess:1.11.3'
+
+    // validated artefacts
+    compile 'org.mvel:mvel2:2.2.7.Final'
 }
 
 repositories {
-   jcenter()
+    jcenter()
 }
 
-apply plugin: 'me.champeau.gradle.jmh'
-
-jmh {
-    include = 'mvel.MVELBench*'
-    humanOutputFile = null
-    iterations = 3
-}
-
-task bench (type: JavaExec, dependsOn: classes){
+task benchMvel(type: JavaExec, dependsOn: classes, description: 'Bench MVEL scripted execution vs. direct calls') {
     classpath = sourceSets.main.runtimeClasspath
-    main = "mvel.MVELBench"
+    main = "org.bearmug.jmh.MVELBench"
 }
