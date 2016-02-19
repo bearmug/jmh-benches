@@ -36,3 +36,9 @@ task benchStreams(type: JavaExec, dependsOn: classes,
     classpath = sourceSets.main.runtimeClasspath
     main = "org.bearmug.jmh.structures.StreamsBenchmark"
 }
+
+task benchMemoryContention(type: JavaExec, dependsOn: classes,
+        description: 'validate memory contention impact with primitive and concurrent atomic') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.concurrent.MemoryContentionBenchmark"
+}
