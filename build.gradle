@@ -31,3 +31,8 @@ task benchFloatingPoint(type: JavaExec, dependsOn: classes,
     main = "org.bearmug.jmh.conversions.FloatingPointBenchmark"
 }
 
+task benchStreams(type: JavaExec, dependsOn: classes,
+        description: 'compare streams performance over classic loop processing') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.structures.StreamsBenchmark"
+}
