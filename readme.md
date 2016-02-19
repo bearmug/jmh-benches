@@ -1,5 +1,5 @@
 # jmh-benches
-### JMH benchmarks set to measure and compare interesting cases and pitfalls
+### JMH benchmarks to measure and walk through interesting cases and pitfalls
 
 ## How to run
 Simply clone repo and run gradle tasks from below:
