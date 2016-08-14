@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd0d630ac1784c819523e1505bd6339d)](https://www.codacy.com/app/pavel-fadeev/jmh-benches?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bearmug/jmh-benches&amp;utm_campaign=Badge_Grade)
+
 # jmh-benches
 JMH benchmarks collection to evaluate interesting cases and pitfalls
 
