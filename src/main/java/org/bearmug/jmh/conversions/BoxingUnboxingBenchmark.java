@@ -27,22 +27,22 @@ import java.util.concurrent.TimeUnit;
 public class BoxingUnboxingBenchmark {
 
     @Param({"99999999999999999"})
-    long paramLongPrimitive;
+    private long paramLongPrimitive;
 
     @Param({"99999999999999999"})
-    Long paramLongObject;
+    private Long paramLongObject;
 
     @Param({"99999999999.00000000999999999"})
-    double paramDoublePrimitive;
+    private double paramDoublePrimitive;
 
     @Param({"99999999999.00000000999999999"})
-    Double paramDoubleObject;
+    private Double paramDoubleObject;
 
     @Param({"R"})
-    char paramCharPrimitive;
+    private char paramCharPrimitive;
 
     @Param({"R"})
-    Character paramCharObject;
+    private Character paramCharObject;
 
     @Benchmark
     public long longUnboxing() {

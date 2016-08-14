@@ -19,14 +19,14 @@ public class MemoryContentionBenchmark {
 
     @State(Scope.Benchmark)
     public static class StateBenchmark {
-        volatile int primitiveCounter = 0;
-        final AtomicInteger atomicCounter = new AtomicInteger(0);
+        private volatile int primitiveCounter = 0;
+        private final AtomicInteger atomicCounter = new AtomicInteger(0);
     }
 
     @State(Scope.Thread)
     public static class StateThread {
-        volatile int primitiveCounter = 0;
-        final AtomicInteger atomicCounter = new AtomicInteger(0);
+        private volatile int primitiveCounter = 0;
+        private final AtomicInteger atomicCounter = new AtomicInteger(0);
     }
 
     @Benchmark

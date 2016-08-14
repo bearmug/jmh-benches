@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class StreamsBenchmark {
 
-    static final List<Integer> src = new ArrayList<>();
+    private static final List<Integer> src = new ArrayList<>();
 
     static {
         final Random random = new Random(System.currentTimeMillis());

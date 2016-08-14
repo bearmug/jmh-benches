@@ -34,14 +34,14 @@ import java.util.concurrent.TimeUnit;
 public class FloatingPointBenchmark {
 
     @Param({"1.0000000001"})
-    double doubleParam1;
+    private double doubleParam1;
 
     @Param({"1.0000000001"})
-    double doubleParam2;
+    private double doubleParam2;
 
-    BigDecimal bigDecimalParam1;
+    private BigDecimal bigDecimalParam1;
 
-    BigDecimal bigDecimalParam2;
+    private BigDecimal bigDecimalParam2;
 
     @Setup
     public void before() {
