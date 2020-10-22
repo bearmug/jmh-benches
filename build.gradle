@@ -2,11 +2,11 @@ apply plugin: 'java'
 
 dependencies {
     // harness dependencies
-    compile 'org.openjdk.jmh:jmh-core:1.11.3'
-    compile 'org.openjdk.jmh:jmh-generator-annprocess:1.11.3'
+    compile 'org.openjdk.jmh:jmh-core:1.26'
+    annotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.26'
 
     // validated artefacts
-    compile 'org.mvel:mvel2:2.2.7.Final'
+    compile 'org.mvel:mvel2:2.4.10.Final'
 }
 
 repositories {
@@ -41,4 +41,10 @@ task benchMemoryContention(type: JavaExec, dependsOn: classes,
         description: 'validate memory contention impact with primitive and concurrent atomic') {
     classpath = sourceSets.main.runtimeClasspath
     main = "org.bearmug.jmh.concurrent.MemoryContentionBenchmark"
+}
+
+task benchUuidValidation(type: JavaExec, dependsOn: classes,
+        description: 'compare performance for pattern/parsing uuid strings validation') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.conversions.UuidValidationBenchmark"
 }
