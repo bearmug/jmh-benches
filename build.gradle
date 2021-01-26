@@ -7,6 +7,7 @@ dependencies {
 
     // validated artefacts
     compile 'org.mvel:mvel2:2.4.10.Final'
+    compile 'com.jayway.jsonpath:json-path:2.5.0'
 }
 
 repositories {
@@ -29,6 +30,12 @@ task benchFloatingPoint(type: JavaExec, dependsOn: classes,
         description: 'compare performance for primitive math actions for double and BigDecimal') {
     classpath = sourceSets.main.runtimeClasspath
     main = "org.bearmug.jmh.conversions.FloatingPointBenchmark"
+}
+
+task benchJsonPath(type: JavaExec, dependsOn: classes,
+        description: "compare json-path performance for exact optional path and  '..' one") {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.conversions.JsonPathBenchmark"
 }
 
 task benchStreams(type: JavaExec, dependsOn: classes,
