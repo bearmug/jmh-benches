@@ -55,3 +55,9 @@ task benchUuidValidation(type: JavaExec, dependsOn: classes,
     classpath = sourceSets.main.runtimeClasspath
     main = "org.bearmug.jmh.conversions.UuidValidationBenchmark"
 }
+
+task benchLongCondition(type: JavaExec, dependsOn: classes,
+        description: 'long condition benchmark') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "org.bearmug.jmh.conversions.LongConditionBenchmark"
+}
